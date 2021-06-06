@@ -12,6 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import kg.geektech.taskapp31.models.Task;
 
@@ -36,7 +41,6 @@ public class TaskFragment extends Fragment {
             }
         });
     }
-
     private void save() {
         String text = editText.getText().toString();
 
@@ -46,9 +50,21 @@ public class TaskFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("text", text);
         getParentFragmentManager().setFragmentResult("rk_task", bundle);
-        close();
+        saveToFireStore(task);
     }
-
+    private void saveToFireStore(Task task){
+        FirebaseFirestore.getInstance().collection("task").add(task).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<DocumentReference> t) {
+                if (t.isSuccessful()){
+                    Toast.makeText(requireContext(), "Successs", Toast.LENGTH_SHORT).show();
+                    close();
+                }else {
+                    Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
     private void close() {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
         navController.navigateUp();

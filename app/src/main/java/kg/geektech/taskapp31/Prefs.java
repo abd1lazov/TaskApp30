@@ -18,4 +18,17 @@ public class Prefs {
     public boolean isShown() {
         return preferences.getBoolean("isShown", false);
     }
+    public void putString(String Save,String s){
+        preferences.edit().putString("save",s).apply();
+    }
+    public String getString(String Save){
+        return preferences.getString("save","");
+    }
+    public void clearPreferences(){
+        preferences.edit().clear().commit();
+    }
+    public void clearEditText(){
+        preferences.edit().remove(getString("save"));
+    }
 }
+

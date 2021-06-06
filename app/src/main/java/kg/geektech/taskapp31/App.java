@@ -9,6 +9,7 @@ import kg.geektech.taskapp31.room.AppDatabase;
 public class App extends Application {
 
     private static AppDatabase appDatabase;
+    private static App instance;
 
     @Override
     public void onCreate() {
@@ -21,5 +22,8 @@ public class App extends Application {
 
     public static AppDatabase getAppDatabase() {
         return appDatabase;
+    }
+    public static App getInstance(){
+        return instance;
     }
 }
