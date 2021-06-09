@@ -6,18 +6,29 @@
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".TaskFragment">
-
-    <EditText
-        android:id="@+id/editText"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:background="@drawable/bg_edit"
-        android:layout_height="wrap_content"
-        android:hint="Введите задачку" />
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit"
+            android:hint="Введите задачку"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--    <EditText-->
+<!--        android:id="@+id/editText"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:background="@drawable/bg_edit"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Введите задачку" />-->
 
     <Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="Save" />
 
 </LinearLayout>

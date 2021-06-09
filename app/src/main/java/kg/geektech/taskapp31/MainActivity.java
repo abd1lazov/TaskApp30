@@ -19,7 +19,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.zip.Inflater;
+
+import kg.geektech.taskapp31.models.Task;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,9 +43,7 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-//        Prefs prefs = new Prefs(this);
-//        if (!prefs.isShown()) navController.navigate(R.id.boardFragment);
-
+        navController.navigate(R.id.phoneFragment );
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

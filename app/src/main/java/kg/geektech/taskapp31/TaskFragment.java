@@ -33,7 +33,8 @@ public class TaskFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        editText = view.findViewById(R.id.editText);
+        editText = view.findViewById(R.id.edittext
+        );
         view.findViewById(R.id.btnSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

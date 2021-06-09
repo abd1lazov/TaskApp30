@@ -1,5 +1,6 @@
 package kg.geektech.taskapp31.room;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -15,12 +16,15 @@ import kg.geektech.taskapp31.models.Task;
 public interface TaskDao {
 
     @Query("SELECT * FROM task")
-    List<Task> getAll();
-    @Query("select * From task Order By id ASC")
-    List<List<Task>>sortByASC();
+    LiveData<List<Task>> getAll();
+
+    @Query("SELECT * FROM task ORDER BY title ASC")
+    LiveData<List<Task>>SortByASc();
 
     @Insert
     void insert(Task task);
+
     @Delete
-    void remove(Task task);
+    void remove (Task task);
 }
+
