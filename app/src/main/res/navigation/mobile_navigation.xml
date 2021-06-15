@@ -42,4 +42,9 @@
         android:name="kg.geektech.taskapp31.ui.auth.phoneFragment"
         android:label="fragment_phone"
         tools:layout="@layout/fragment_phone" />
+    <fragment
+        android:id="@+id/codeFragment"
+        android:name="kg.geektech.taskapp31.ui.auth.CodeFragment"
+        android:label="fragment_code"
+        tools:layout="@layout/fragment_code" />
 </navigation>

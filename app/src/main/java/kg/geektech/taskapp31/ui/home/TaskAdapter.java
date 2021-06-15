@@ -67,6 +67,10 @@ public class TaskAdapter  extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         this.list.addAll(list);
         notifyDataSetChanged();
     }
+
+    public void setOnItemClickListener() {
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textTitle;

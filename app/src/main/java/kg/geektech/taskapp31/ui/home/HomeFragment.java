@@ -26,14 +26,14 @@ import java.util.List;
 
 import kg.geektech.taskapp31.App;
 import kg.geektech.taskapp31.R;
+import kg.geektech.taskapp31.interfaces.OnItemClickListener;
 import kg.geektech.taskapp31.models.Task;
 
 public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TaskAdapter adapter;
-    private Object List;
-
+    private Object OnItemClickListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         roomInit();
         super.onViewCreated(view, savedInstanceState);
+        adapter = new TaskAdapter();
         recyclerView = view.findViewById(R.id.recyclerView);
         view.findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,16 +70,15 @@ public class HomeFragment extends Fragment {
         App.getAppDatabase().taskDao().getAll().observe(getViewLifecycleOwner(), new Observer<java.util.List<Task>>() {
             @Override
             public void onChanged(java.util.List<Task> list) {
-                initList(list);
+                initList();
             }
         });
 
     }
 
-    private void initList(List<Task>list) {
-        adapter = new TaskAdapter();
-        adapter.addItems(list);
+    private void initList() {
         recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener();
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -101,12 +101,10 @@ public class HomeFragment extends Fragment {
             public void onChanged(java.util.List<Task> list) {
                 Toast.makeText(requireContext(), "отсортировано!", Toast.LENGTH_SHORT).show();
                 adapter.notifyDataSetChanged();
-                initList(list);
+                initList();
             }
         });
-
     }
-
     private void setResultListener() {
         getParentFragmentManager().setFragmentResultListener(
                 "rk_task",
